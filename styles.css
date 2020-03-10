@@ -13,3 +13,42 @@
 #request-details dt {
   width: 170px;
 }
+
+.callout p {
+  color: unset;
+  /* font-weight: bold; */
+  display: inline;
+}
+
+.callout {
+   border-left: 5px solid #f99300;
+    position: relative;
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    color: #444;
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.eot?v=4.2.0');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.2.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.2.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.fas {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+i {
+  /* display: inline-block; */
+  font-size: 4em !important;
+  float: left;
+  padding-right: 10px;
+}
