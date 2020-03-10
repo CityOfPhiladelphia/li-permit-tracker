@@ -97,22 +97,22 @@
                   <script type="text/template" id="tmpl-result">
 				 
 				  
-                    <h2>Application #{{ application_number }}</h2>
+                    <h2>Application #{{ applicationnumber }}</h2>
 
                     <div id="application-details">
                       <dl>
                         <dt>Location</dt>
-                        <dd><b>{{ stno }} {{predir}} {{ stname }} {{ suffix}}</b></dd>
+                        <dd><b>{{ address }}</b></dd>
                       </dl>
 					  
 					  
 					  <dl>
                         <dt>Application Description</dt>
-                        <dd>{{ apdesc }}</dd>
+                        <dd>{{ applicationdescription }}</dd>
                       </dl>
 					  <dl>
                         <dt>Status</dt>
-                        <dd>{{ stat }}</dd>
+                        <dd>{{ status }}</dd>
                       </dl>
 					  <dl>
                         <dt>Comments</dt>
@@ -122,15 +122,15 @@
 
 					  <dl>
                         <dt>Application Submission Date</dt>
-                        <dd>{{ apdttm }}</dd>
+                        <dd>{{ applicationdate }}</dd>
                       </dl>
 					  <dl>
                         <dt>Due Date of Latest Review</dt>
-                        <dd>{{ suspdt }}</dd>
+                        <dd>{{ latestreviewduedate }}</dd>
                       </dl>
 					  <dl>
                         <dt>Date Review Completed</dt>
-                        <dd>{{ compdttm }}</dd>
+                        <dd>{{ latestreviewcompleteddate }}</dd>
                       </dl>
                     </div>
                    
@@ -138,7 +138,7 @@
 		</script>
 
                   <script type="text/template" id="tmpl-error">
-                    <span class="error">Application #<b>{{ application_number }}</b> was not found. <a href="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fform.jotform.com%2F81494420572154&data=02%7C01%7C%7C1d7d93092da9422349c908d5cbdae06b%7C2046864f68ea497daf34a6629a6cd700%7C0%7C0%7C636639063721399104&sdata=xuXptcHo%2ByTLiWDs3wAbh6XFafz2cSrnO%2BtMIqbg1IQ%3D&reserved=0">Please submit an inquiry </a> for more information.</span>
+                    <span class="error">Application #<b>{{ applicationnumber }}</b> was not found. <a href="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fform.jotform.com%2F81494420572154&data=02%7C01%7C%7C1d7d93092da9422349c908d5cbdae06b%7C2046864f68ea497daf34a6629a6cd700%7C0%7C0%7C636639063721399104&sdata=xuXptcHo%2ByTLiWDs3wAbh6XFafz2cSrnO%2BtMIqbg1IQ%3D&reserved=0">Please submit an inquiry </a> for more information.</span>
                   </script>
    
                   <script type="text/template" id="tmpl-loading">

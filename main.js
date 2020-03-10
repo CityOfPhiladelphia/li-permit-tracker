@@ -29,7 +29,7 @@
   if (params.id) {
     resultContainer.html(templates.loading)
     var requestParams = {
-      where: "APNO = '" + params.id + "'",
+      where: "applicationnumber = '" + params.id + "'",
       outFields: '*',
       f: 'pjson',
     }
@@ -37,7 +37,7 @@
       var features = response.features
       if (!features || features.length < 1) {
         // If there's no feature, indicate such
-        resultContainer.html(templates.error({ application_number : params.id }))
+        resultContainer.html(templates.error({ applicationnumber : params.id }))
       } else {
         // Otherwise display the first feature (which should be the only
         // feature)
@@ -50,12 +50,12 @@
             comments = attrs.COMMENTS
 
         // if failed, or incomplete and there's a review date
-    		if (status === 'FAILED' || (status === 'INCOMPLETE' && attrs.COMPDTTM)) {
+    		if (status === 'FAILED' || (status === 'INCOMPLETE' && attrs.latestreviewcompleteddate)) {
           comments = FAILED_OR_INCOMPLETE_TEXT
   		  }
 			
 		//if status is incomplete and there is no COMPDTTM	
-	    	if (status === 'INCOMPLETE' && (!attrs.COMPDTTM || attrs.COMPDTTM === '')) {
+	    	if (status === 'INCOMPLETE' && (!attrs.latestreviewcompleteddate || attrs.latestreviewcompleteddate === '')) {
 			comments = NO_COMPDTTM 
 		 }
 			
@@ -84,25 +84,21 @@
         }
 
         var templateData = {
-          application_number:   attrs.APNO,
-          comments:             comments,
-    		  stat:					        status,
-    		  stno:					        attrs.STNO,
-    		  predir:				        attrs.PREDIR,
-    		  stname:				        attrs.STNAME,
-    		  suffix:				        attrs.SUFFIX,
-    		  apdttm:               formatDate(attrs.APDTTM),
-    		  suspdt:               formatDate(attrs.SUSPDT),
-    		  loc:					        attrs.LOC,
-    		  apdesc:				        attrs.APDESC,
-			  compdttm:				formatDate(attrs.COMPDTTM),
+            applicationnumber:   			attrs.applicationnumber,
+            comments:             			comments,
+    		status:					        status,
+    		address:					    attrs.address,
+    		applicationdate:                formatDate(attrs.applicationdate),
+    		latestreviewduedate:            formatDate(attrs.latestreviewduedate),
+    		applicationdescription:			attrs.applicationdescription,
+			latestreviewcompleteddate:		formatDate(attrs.latestreviewcompleteddate),
         }
 
         // Render template
         resultContainer.html(templates.result(templateData))
       }
     }).fail(function () {
-      resultContainer.html(templates.error({ application_number : params.id }))
+      resultContainer.html(templates.error({ applicationnumber : params.id }))
     })
   }
 
