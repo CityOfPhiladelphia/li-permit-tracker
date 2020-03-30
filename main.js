@@ -12,9 +12,9 @@
         PLAN REVIEW COMPLETED; A REQUEST FOR ADDITIONAL INFORMATION HAS \
         BEEN ISSUED BY THE DEPARTMENT TO THE PRIMARY APPLICANT.\
       ",
-      DATE_FORMAT = 'dddd, MMMM Do YYYY',
-      INVALID_DATE_TEXT = 'Review Not Yet Completed',
-	  NO_COMPDTTM = 'PLAN REVIEW NOT YET COMPLETED; PLEASE ALLOW UNTIL THE SCHEDULED DUE DATE FOR A COMPLETED REVIEW'
+    DATE_FORMAT = 'dddd, MMMM Do YYYY',
+    INVALID_DATE_TEXT = 'Review Not Yet Completed',
+    NO_COMPDTTM = 'PLAN REVIEW NOT YET COMPLETED; PLEASE ALLOW UNTIL THE SCHEDULED DUE DATE FOR A COMPLETED REVIEW'
 
   var params = qs(window.location.search.substr(1))
   // Use mustache.js style brackets in templates
@@ -29,7 +29,7 @@
   if (params.id) {
     resultContainer.html(templates.loading)
     var requestParams = {
-      where: "applicationnumber = '" + params.id + "'",
+      where: "APPLICATIONNUMBER = '" + params.id + "'",
       outFields: '*',
       f: 'pjson',
     }
@@ -37,7 +37,7 @@
       var features = response.features
       if (!features || features.length < 1) {
         // If there's no feature, indicate such
-        resultContainer.html(templates.error({ applicationnumber : params.id }))
+        resultContainer.html(templates.error({ applicationnumber: params.id }))
       } else {
         // Otherwise display the first feature (which should be the only
         // feature)
@@ -47,21 +47,21 @@
 
         // handle comments
         var status = attrs.STATUS,
-            comments = attrs.COMMENTS
+          comments = attrs.COMMENTS
 
         // if failed, or incomplete and there's a review date
-    		if (status === 'FAILED' || (status === 'INCOMPLETE' && attrs.latestreviewcompleteddate)) {
+        if (status === 'FAILED' || (status === 'INCOMPLETE' && attrs.latestreviewcompleteddate)) {
           comments = FAILED_OR_INCOMPLETE_TEXT
-  		  }
-			
-		//if status is incomplete and there is no COMPDTTM	
-	    	if (status === 'INCOMPLETE' && (!attrs.latestreviewcompleteddate || attrs.latestreviewcompleteddate === '')) {
-			comments = NO_COMPDTTM 
-		 }
-			
-		console.log('testing')	
-			
-			
+        }
+
+        //if status is incomplete and there is no COMPDTTM	
+        if (status === 'INCOMPLETE' && (!attrs.latestreviewcompleteddate || attrs.latestreviewcompleteddate === '')) {
+          comments = NO_COMPDTTM
+        }
+
+        console.log('testing')
+
+
         function formatDate(input) {
           var dateFormatted
 
@@ -84,33 +84,33 @@
         }
 
         var templateData = {
-            applicationnumber:   			attrs.applicationnumber,
-            comments:             			comments,
-    		status:					        status,
-    		address:					    attrs.address,
-    		applicationdate:                formatDate(attrs.applicationdate),
-    		latestreviewduedate:            formatDate(attrs.latestreviewduedate),
-    		applicationdescription:			attrs.applicationdescription,
-			latestreviewcompleteddate:		formatDate(attrs.latestreviewcompleteddate),
+          applicationnumber: attrs.APPLICATIONNUMBER,
+          comments: comments,
+          status: status,
+          address: attrs.ADDRESS,
+          applicationdate: formatDate(attrs.APPlICATIONDATE),
+          latestreviewduedate: formatDate(attrs.LATESTREVIEWDUEDATE),
+          applicationdescription: attrs.APPLICATIONDESCRIPTION,
+          latestreviewcompleteddate: formatDate(attrs.LATESTREVIEWCOMPLETEDDATE),
         }
 
         // Render template
         resultContainer.html(templates.result(templateData))
       }
     }).fail(function () {
-      resultContainer.html(templates.error({ applicationnumber : params.id }))
+      resultContainer.html(templates.error({ applicationnumber: params.id }))
     })
   }
 
   // decode a uri into a kv representation :: str -> obj
   // https://github.com/yoshuawuyts/sheet-router/blob/master/qs.js
-  function qs (uri) {
+  function qs(uri) {
     var obj = {}
     var reg = new RegExp('([^?=&]+)(=([^&]*))?', 'g')
     uri.replace(/^.*\?/, '').replace(reg, map)
     return obj
 
-    function map (a0, a1, a2, a3) {
+    function map(a0, a1, a2, a3) {
       obj[window.decodeURIComponent(a1)] = window.decodeURIComponent(a3)
     }
   }
