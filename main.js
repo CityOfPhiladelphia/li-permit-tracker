@@ -50,12 +50,12 @@
           comments = attrs.COMMENTS
 
         // if failed, or incomplete and there's a review date
-        if (status === 'FAILED' || (status === 'INCOMPLETE' && attrs.latestreviewcompleteddate)) {
+        if (status === 'FAILED' || (status === 'INCOMPLETE' && attrs.LATESTREVIEWCOMPLETEDDATE)) {
           comments = FAILED_OR_INCOMPLETE_TEXT
         }
 
         //if status is incomplete and there is no COMPDTTM	
-        if (status === 'INCOMPLETE' && (!attrs.latestreviewcompleteddate || attrs.latestreviewcompleteddate === '')) {
+        if (status === 'INCOMPLETE' && (!attrs.LATESTREVIEWCOMPLETEDDATE || attrs.LATESTREVIEWCOMPLETEDDATE === '')) {
           comments = NO_COMPDTTM
         }
 
