@@ -88,7 +88,7 @@
           comments: comments,
           status: status,
           address: attrs.ADDRESS,
-          applicationdate: formatDate(attrs.APPlICATIONDATE),
+          applicationdate: formatDate(attrs.APPLICATIONDATE),
           latestreviewduedate: formatDate(attrs.LATESTREVIEWDUEDATE),
           applicationdescription: attrs.APPLICATIONDESCRIPTION,
           latestreviewcompleteddate: formatDate(attrs.LATESTREVIEWCOMPLETEDDATE),
